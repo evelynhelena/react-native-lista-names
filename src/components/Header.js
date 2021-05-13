@@ -2,10 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 
-function Header(props){
+function Header({title}){//Seria a mesma coisa que receber uma props
     return(
         <View style={style.container}>
-            <Text style={style.title}>{props.title}</Text>
+            <Text style={style.title}>{title}</Text>
         </View>
     )
 }
@@ -21,6 +21,7 @@ const style = StyleSheet.create({
     title:{
         color: '#fff',
         fontSize: 30,
+        marginTop: 18,
     }
 });
 
