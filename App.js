@@ -1,29 +1,30 @@
-import React, {useEffect, useState} from 'react';
-import {ScrollView, View, } from 'react-native';
-import Header from './src/components/Header';
-import PeopleList from './src/components/PeopleList';
-import axios from 'axios';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import PeoplePage from "./src/Pages/PeoplePage";
+import Tela2 from "./src/Pages/Tela2";
 
-export default function App() {
-
-  const [people,setPeople] = useState([]);
-
-  useEffect(() => {
-    axios.get('https://randomuser.me/api/?results=15&nat=br').then(response => {
-      setPeople(response.data.results) 
-    }).catch(error =>{
-      console.log('Ocorreu um erro - ' + error);
-    });
-  }, []);
-
+function App() {
+  const Stack = createStackNavigator();
   return (
-    
-      <View>
-        <Header title="Lista de Usuário"></Header>
-        <ScrollView>
-          <PeopleList people={people}></PeopleList>
-        </ScrollView>
-      </View>
-   
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Usuários" component={PeoplePage} options={style} />
+        <Stack.Screen name="Tela2" component={Tela2} options={style} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
+
+const style = {
+  headerStyle: {
+    backgroundColor: "#3db7d9",
+  },
+  headerTitleStyle: {
+    color: "#fff",
+    fontSize: 25,
+    textAlign:'center'
+  },
+};
+
+export default App;
