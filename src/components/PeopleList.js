@@ -10,11 +10,12 @@ import {
 
 function PeopleList({ people , navigation }) {
   if (people.length !== 0) {
-    const textElements = people.map(({ login, picture, name }) => {
+    const textElements = people.map((person) => {
+      const { login, picture, name } = person;
       return (
         <TouchableHighlight
           key={login.uuid}
-          onPress={() => navigation.navigate('Tela2')}
+          onPress={() => navigation.navigate("PeopleDatailes",{person})}
         >
           <View style={styles.container}>
             <Image source={{ uri: picture.medium }} style={styles.photo} />
